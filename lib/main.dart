@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -13,77 +12,81 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
           appBar: _appBar(),
-          body: Column(children: <Widget>[Expanded(child: Container(
-              child: Observer(builder: (_) {
-                return ListView.builder(
-                    itemCount: 5,
-                    padding: const EdgeInsets.all(8),
-                    itemBuilder: (BuildContext context, int index) {
-                      if (index == 0) {
-                        return Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16, bottom: 12),
-                              child: RichText(
-                                textAlign: TextAlign.center,
-                                text: const TextSpan(
-                                  style: TextStyle(
-                                      fontSize: 16),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                        text: 'There are a total of ',
-                                        style: TextStyle(color: Colors.black)),
-                                    TextSpan(
-                                        text: '5',
-                                        style: TextStyle(
-                                            color: Colors.blue)),
-                                     TextSpan(
-                                        text: ' items.\n',
-                                        style: TextStyle(color: Colors.black)),
-                                  ],
+          body: Column(children: <Widget>[
+            Expanded(
+              child: Builder(builder: (context) {
+                return Observer(builder: (_) {
+                  return ListView.builder(
+                      itemCount: 5,
+                      padding: const EdgeInsets.all(8),
+                      itemBuilder: (BuildContext context, int index) {
+                        if (index == 0) {
+                          return Column(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 10, bottom: 0),
+                                child: RichText(
+                                  textAlign: TextAlign.center,
+                                  text: const TextSpan(
+                                    style: TextStyle(fontSize: 16),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: 'There are a total of ',
+                                          style:
+                                              TextStyle(color: Colors.black)),
+                                      TextSpan(
+                                          text: '5',
+                                          style: TextStyle(color: Colors.blue)),
+                                      TextSpan(
+                                          text: ' items.\n',
+                                          style:
+                                              TextStyle(color: Colors.black)),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            _card()
-                          ],
-                        );
-                      } else {
-                        return _card();
-                      }
-                    });
+                              _card()
+                            ],
+                          );
+                        } else {
+                          return _card();
+                        }
+                      });
+                });
               }),
-            ),)])),
-          debugShowCheckedModeBanner: false,
+            )
+          ])),
+      debugShowCheckedModeBanner: false,
     );
   }
 
   _appBar() {
     return AppBar(
-      backgroundColor: const Color(0xFFC13854),
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       title: Align(
           alignment: Alignment.center,
           child: Row(
             children: [
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.add),
-                  alignment: Alignment.centerRight,
-                  color: const Color(0xFFC13854)),
               const Expanded(
                   child: Text(
                 "ItemView and DialogueBox",
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.white),
               )),
-              const Icon(
-                Icons.flag,
-                color: Color(0xFFC13854),
-              )
+              IconButton(
+                  onPressed: () {
+                    print('olá criar');
+                  },
+                  icon: const Icon(Icons.add),
+                  alignment: Alignment.centerRight,
+                  color: const Color.fromARGB(255, 255, 255, 255)),
             ],
           )),
     );
   }
-    _card() {
+
+  _card() {
     return Card(
       elevation: 8,
       shadowColor: Colors.grey.withOpacity(0.3),
@@ -97,16 +100,15 @@ class MyApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
-            // ignore: prefer_const_literals_to_create_immutables
             children: [
               Row(
-                children: const [
-                  Icon(
+                children: [
+                  const Icon(
                     Icons.circle,
                     size: 12,
                     color: Colors.red,
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(left: 15.0),
                       child: Text(
@@ -119,6 +121,15 @@ class MyApp extends StatelessWidget {
                       ),
                     ),
                   ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: IconButton(
+                      onPressed: () {
+                        print('olá deletar');
+                      },
+                      icon: const Icon(Icons.delete),
+                    ),
+                  )
                 ],
               ),
               const SizedBox(
@@ -149,8 +160,7 @@ class MyApp extends StatelessWidget {
                           'Descrição do Card',
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
-                          style:
-                              TextStyle(fontSize: 15, letterSpacing: .2),
+                          style: TextStyle(fontSize: 15, letterSpacing: .2),
                         ),
                       ),
                     ),
@@ -183,8 +193,7 @@ class MyApp extends StatelessWidget {
                           'Identidade',
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
-                          style:
-                              TextStyle(fontSize: 15, letterSpacing: .2),
+                          style: TextStyle(fontSize: 15, letterSpacing: .2),
                         ),
                       ),
                     ),
@@ -212,7 +221,8 @@ class MyApp extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 5.0),
-                      child: Text('04/10/2021',
+                      child: Text(
+                        '04/10/2021',
                         style: TextStyle(fontSize: 15, letterSpacing: .2),
                       ),
                     ),
