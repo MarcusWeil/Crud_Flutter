@@ -1,7 +1,6 @@
 import 'package:crud_and_dialoguebox/components/delete_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'components/delete_snackbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: DeleteSnackBar.instance.rootScaffoldMessengerKey,
       home: Scaffold(
           appBar: _appBar(),
           body: Column(children: <Widget>[
@@ -292,10 +292,10 @@ class MyApp extends StatelessWidget {
                 Center(
                     child: ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context, rootNavigator: true)
-                              .pop('dialog');
                           DeleteSnackBar.instance
                               .showDeleteSnackBar('Excluído com sucesso');
+                          Navigator.of(context, rootNavigator: true)
+                              .pop('dialog');
                         },
                         style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.fromLTRB(35, 10, 35, 10),
