@@ -1,4 +1,6 @@
-import 'package:crud_and_dialoguebox/components/delete_snackbar.dart';
+import 'package:crud_and_dialoguebox/components/show_snackbar.dart';
+import 'package:crud_and_dialoguebox/view/product_create.dart';
+import 'package:crud_and_dialoguebox/view/product_update.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      scaffoldMessengerKey: DeleteSnackBar.instance.rootScaffoldMessengerKey,
+      scaffoldMessengerKey: ShowSnackBar.instance.rootScaffoldMessengerKey,
       home: Scaffold(
           appBar: _appBar(),
           body: Column(children: <Widget>[
@@ -72,17 +74,22 @@ class MyApp extends StatelessWidget {
             children: [
               const Expanded(
                   child: Text(
-                "ItemView and DialogueBox",
+                "Lista de produtos",
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.white),
               )),
-              IconButton(
-                  onPressed: () {
-                    print('olá criar');
-                  },
-                  icon: const Icon(Icons.add),
-                  alignment: Alignment.centerRight,
-                  color: const Color.fromARGB(255, 255, 255, 255)),
+              Builder(builder: (context) {
+                return IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CreateProduct()));
+                    },
+                    icon: const Icon(Icons.add),
+                    alignment: Alignment.centerRight,
+                    color: const Color.fromARGB(255, 255, 255, 255));
+              }),
             ],
           )),
     );
@@ -113,7 +120,7 @@ class MyApp extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(left: 15.0),
                       child: Text(
-                        'Título do card',
+                        'Nome do Produto',
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                             fontSize: 16,
@@ -135,102 +142,70 @@ class MyApp extends StatelessWidget {
                   })
                 ],
               ),
-              const SizedBox(
-                height: 12,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: Row(
-                  children: const [
-                    Icon(
-                      Icons.mail_outline,
-                      size: 16,
+              Row(
+                children: const [
+                  Icon(
+                    Icons.description_outlined,
+                    size: 16,
+                    color: Colors.black,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 5.0),
+                    child: Text(
+                      ' Preço: ',
+                      style: TextStyle(
+                          fontSize: 15,
+                          letterSpacing: .2,
+                          fontWeight: FontWeight.bold),
                     ),
-                    Padding(
+                  ),
+                  Expanded(
+                    child: Padding(
                       padding: EdgeInsets.only(left: 5.0),
                       child: Text(
-                        ' Description: ',
-                        style: TextStyle(
-                            fontSize: 15,
-                            letterSpacing: .2,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 5.0),
-                        child: Text(
-                          'Descrição do Card',
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: TextStyle(fontSize: 15, letterSpacing: .2),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: Row(
-                  children: const [
-                    Icon(
-                      Icons.badge_outlined,
-                      size: 16,
-                      color: Colors.black,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 5.0),
-                      child: Text(
-                        ' ID: ',
-                        style: TextStyle(
-                            fontSize: 15,
-                            letterSpacing: .2,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 5.0),
-                        child: Text(
-                          'Identidade',
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,
-                          style: TextStyle(fontSize: 15, letterSpacing: .2),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: Row(
-                  children: const [
-                    Icon(
-                      Icons.calendar_today_sharp,
-                      size: 16,
-                      color: Colors.black,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 5.0),
-                      child: Text(
-                        ' Data de criação: ',
-                        style: TextStyle(
-                            fontSize: 15,
-                            letterSpacing: .2,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 5.0),
-                      child: Text(
-                        '04/10/2021',
+                        "Preço ---",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                         style: TextStyle(fontSize: 15, letterSpacing: .2),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.calendar_month_rounded,
+                    size: 16,
+                    color: Colors.black,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 5.0),
+                    child: Text(
+                      ' Data de adição: ',
+                      style: TextStyle(
+                          fontSize: 15,
+                          letterSpacing: .2,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const Expanded(
+                    child: Text(
+                      '04/10/2021',
+                      style: TextStyle(fontSize: 15, letterSpacing: .2),
+                    ),
+                  ),
+                  Builder(builder: (context) {
+                    return IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => UpdateProduct())));
+                        },
+                        icon: const Icon(Icons.edit));
+                  }),
+                ],
               ),
             ],
           ),
@@ -256,55 +231,59 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      content: SizedBox(
-        height: MediaQuery.of(context).size.height / 5,
-        child: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(0),
-              child: Icon(
-                Icons.warning_rounded,
-                color: Color.fromRGBO(173, 42, 42, 1),
-                size: 60,
+      content: Expanded(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height / 3.5,
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(0),
+                child: Icon(
+                  Icons.warning_rounded,
+                  color: Color.fromRGBO(173, 42, 42, 1),
+                  size: 60,
+                ),
               ),
-            ),
-            Observer(builder: (_) {
-              return const Text(
-                "Tem certeza que deseja deletar este item?",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-              );
-            }),
-            Expanded(child: Container()),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Center(
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.of(context, rootNavigator: true)
-                              .pop('dialog');
-                        },
-                        child: const Text(
-                          "Não",
-                          style: TextStyle(fontSize: 18.0, color: Colors.black),
-                        ))),
-                Center(
-                    child: ElevatedButton(
-                        onPressed: () {
-                          DeleteSnackBar.instance
-                              .showDeleteSnackBar('Excluído com sucesso');
-                          Navigator.of(context, rootNavigator: true)
-                              .pop('dialog');
-                        },
-                        style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.fromLTRB(35, 10, 35, 10),
-                            primary: const Color.fromRGBO(173, 42, 42, 1)),
-                        child: const Text("Sim",
-                            style: TextStyle(fontSize: 18.0)))),
-              ],
-            ),
-          ],
+              Observer(builder: (_) {
+                return const Text(
+                  "Tem certeza que deseja deletar este item?",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                );
+              }),
+              Expanded(child: Container()),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Center(
+                      child: TextButton(
+                          onPressed: () {
+                            Navigator.of(context, rootNavigator: true)
+                                .pop('dialog');
+                          },
+                          child: const Text(
+                            "Não",
+                            style:
+                                TextStyle(fontSize: 18.0, color: Colors.black),
+                          ))),
+                  Center(
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context, rootNavigator: true)
+                                .pop('dialog');
+                            ShowSnackBar.instance
+                                .showSnackBarSucess('Excluído com sucesso');
+                          },
+                          style: ElevatedButton.styleFrom(
+                              padding:
+                                  const EdgeInsets.fromLTRB(35, 10, 35, 10),
+                              primary: const Color.fromRGBO(173, 42, 42, 1)),
+                          child: const Text("Sim",
+                              style: TextStyle(fontSize: 18.0)))),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

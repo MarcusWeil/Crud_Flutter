@@ -1,5 +1,9 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 *.cpp linguist-vendored
+*.c linguist-vendored
 *.cmake linguist-vendored
+.make linguist-vendored
+*.xml linguist-vendored
+*.html linguist-vendored
 

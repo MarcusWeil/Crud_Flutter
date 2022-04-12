@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class DeleteSnackBar {
-  static final DeleteSnackBar instance = DeleteSnackBar();
+class ShowSnackBar {
+  static final ShowSnackBar instance = ShowSnackBar();
 
   final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
 
-  void showDeleteSnackBar(String msg) {
+  void showSnackBarSucess(String msg) {
     rootScaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
       elevation: 4,
       backgroundColor: Colors.green,
