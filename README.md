@@ -16,6 +16,6 @@ Tasks:
  <li>Banco de dados</li>
  <li>Create Items(In progress)</li>
  <li>Read Items</li>
- <li>Update Items(In progress</li>
+ <li>Update Items(In progress)</li>
  <li>Delete Items</li>
  </ol>
