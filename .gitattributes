@@ -6,4 +6,5 @@
 .make linguist-vendored
 *.xml linguist-vendored
 *.html linguist-vendored
+*.txt linguist-vendored
 
