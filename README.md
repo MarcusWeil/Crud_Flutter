@@ -12,7 +12,10 @@ Ao confirmar exclusão, é exibido um [SnackBar](https://github.com/MarcusWeil/c
 <img width="400" alt="image" src="https://user-images.githubusercontent.com/93293231/162859054-55033aa6-107e-48af-9a68-76d58148b6d3.png">
 
 To do:
-Banco de dados
-Create
-Update
-Delete
+<ol>
+ <li>Banco de dados</li>
+ <li>Create Items</li>
+ <li>Read Items</li>
+ <li>Update Items</li>
+ <li>Delete Items</li>
+ </ol>
