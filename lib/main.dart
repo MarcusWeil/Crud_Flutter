@@ -1,5 +1,7 @@
+import 'package:crud_and_dialoguebox/components/delete_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'components/delete_snackbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -92,7 +94,6 @@ class MyApp extends StatelessWidget {
       shadowColor: Colors.grey.withOpacity(0.3),
       child: Container(
         decoration: const BoxDecoration(
-          border: Border(right: BorderSide(width: 2, color: Colors.redAccent)),
           color: Colors.white,
         ),
         child: Padding(
@@ -121,15 +122,17 @@ class MyApp extends StatelessWidget {
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: IconButton(
-                      onPressed: () {
-                        print('olá deletar');
-                      },
-                      icon: const Icon(Icons.delete),
-                    ),
-                  )
+                  Builder(builder: (context) {
+                    return GestureDetector(
+                      onTap: () {},
+                      child: IconButton(
+                        onPressed: () {
+                          showDialogBox(context);
+                        },
+                        icon: const Icon(Icons.delete),
+                      ),
+                    );
+                  })
                 ],
               ),
               const SizedBox(
@@ -233,6 +236,83 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  showDialogBox(BuildContext context) {
+    AlertDialog dialogue = AlertDialog(
+      titlePadding: const EdgeInsets.all(0),
+      title: Container(
+        color: const Color.fromARGB(255, 0, 0, 0),
+        child: const Padding(
+          padding: EdgeInsets.all(15),
+          child: Center(
+            child: Text(
+              "Excluir item",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ),
+      content: SizedBox(
+        height: MediaQuery.of(context).size.height / 5,
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(0),
+              child: Icon(
+                Icons.warning_rounded,
+                color: Color.fromRGBO(173, 42, 42, 1),
+                size: 60,
+              ),
+            ),
+            Observer(builder: (_) {
+              return const Text(
+                "Tem certeza que deseja deletar este item?",
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              );
+            }),
+            Expanded(child: Container()),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Center(
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context, rootNavigator: true)
+                              .pop('dialog');
+                        },
+                        child: const Text(
+                          "Não",
+                          style: TextStyle(fontSize: 18.0, color: Colors.black),
+                        ))),
+                Center(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context, rootNavigator: true)
+                              .pop('dialog');
+                          DeleteSnackBar.instance
+                              .showDeleteSnackBar('Excluído com sucesso');
+                        },
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.fromLTRB(35, 10, 35, 10),
+                            primary: const Color.fromRGBO(173, 42, 42, 1)),
+                        child: const Text("Sim",
+                            style: TextStyle(fontSize: 18.0)))),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return dialogue;
+      },
     );
   }
 }
