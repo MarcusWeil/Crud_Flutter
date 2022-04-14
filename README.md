@@ -1,4 +1,4 @@
-# crud_and_dialoguebox
+# Flutter Crud App
  
 Repositório com o propósito de deixar registrado o desenvolvimento de uma tela CRUD para um sistema de produtos com scroll e contagem do número de produtos, onde foram aplicados fundamentos de DialogueBox para confirmação da ação solicitada, conceitos de statelessWidget e statefulWidget para as páginas que precisem de valores mutáveis e a exibição de uma lista trazida de um banco de dados externa.
 
