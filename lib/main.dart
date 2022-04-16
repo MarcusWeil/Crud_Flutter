@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
                 return Observer(builder: (_) {
                   return ListView.builder(
                       itemCount: 5,
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.only(top: 10, bottom: 0),
                       itemBuilder: (BuildContext context, int index) {
                         if (index == 0) {
                           return Column(
@@ -36,14 +36,14 @@ class MyApp extends StatelessWidget {
                                     style: TextStyle(fontSize: 16),
                                     children: <TextSpan>[
                                       TextSpan(
-                                          text: 'There are a total of ',
+                                          text: 'Existem ',
                                           style:
                                               TextStyle(color: Colors.black)),
                                       TextSpan(
                                           text: '5',
                                           style: TextStyle(color: Colors.blue)),
                                       TextSpan(
-                                          text: ' items.\n',
+                                          text: ' produtos cadastrados.\n',
                                           style:
                                               TextStyle(color: Colors.black)),
                                     ],
@@ -112,9 +112,9 @@ class MyApp extends StatelessWidget {
               Row(
                 children: [
                   const Icon(
-                    Icons.circle,
-                    size: 12,
-                    color: Colors.red,
+                    Icons.dashboard,
+                    size: 16,
+                    color: Color.fromARGB(255, 6, 74, 129),
                   ),
                   const Expanded(
                     child: Padding(
@@ -125,7 +125,7 @@ class MyApp extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 16,
                             letterSpacing: 0.2,
-                            color: Colors.red),
+                            color: Color.fromARGB(255, 6, 74, 129)),
                       ),
                     ),
                   ),
@@ -145,7 +145,7 @@ class MyApp extends StatelessWidget {
               Row(
                 children: const [
                   Icon(
-                    Icons.description_outlined,
+                    Icons.attach_money,
                     size: 16,
                     color: Colors.black,
                   ),

@@ -22,6 +22,7 @@ class CreateProductPageState extends State<CreateProduct> {
 _appBar() {
   return AppBar(
       backgroundColor: const Color.fromARGB(255, 12, 116, 202),
+      automaticallyImplyLeading: false,
       title: Align(
           alignment: Alignment.center,
           child: Row(
@@ -43,28 +44,7 @@ _body() {
       child: Stack(children: [
         Column(
           children: [
-            const Text("",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.bold,
-                )),
-            const SizedBox(
-              height: 20.0,
-            ),
-            Row(
-              children: const [
-                Expanded(
-                  child: Text(
-                      "Adicionar um produto.",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20.0)),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
+            const SizedBox(height: 15),
             Image.asset("assets/images/create-product.png",
                 width: 200.0, height: 200.0),
             const SizedBox(
@@ -89,7 +69,7 @@ _body() {
                     color: Colors.black,
                   )),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 40),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -103,21 +83,25 @@ _body() {
                         elevation: 5),
                     child: const Text(
                       'Adicionar',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      primary: const Color.fromARGB(255, 255, 255, 255),
-                      elevation: 5),
-                  child: const Text(
-                    'Cancelar',
-                    style: TextStyle(
-                        fontSize: 16, color: Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                )
+                Builder(builder: (context) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context, rootNavigator: true).pop('dialog');
+                    },
+                    style: ElevatedButton.styleFrom(
+                        primary: const Color.fromARGB(255, 255, 255, 255),
+                        elevation: 5),
+                    child: const Text(
+                      'Cancelar',
+                      style: TextStyle(
+                          fontSize: 18, color: Color.fromARGB(255, 0, 0, 0)),
+                    ),
+                  );
+                })
               ],
             ),
           ],
