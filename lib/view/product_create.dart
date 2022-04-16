@@ -43,7 +43,7 @@ _body() {
       child: Stack(children: [
         Column(
           children: [
-            const Text("Everything is fine!",
+            const Text("",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.0,
@@ -56,7 +56,7 @@ _body() {
               children: const [
                 Expanded(
                   child: Text(
-                      "There are no shipments with suspicious activity.",
+                      "Adicionar um produto.",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 20.0)),
                 ),
@@ -65,7 +65,7 @@ _body() {
             const SizedBox(
               height: 20.0,
             ),
-            Image.asset("assets/create-product.png",
+            Image.asset("assets/images/create-product.png",
                 width: 200.0, height: 200.0),
             const SizedBox(
               height: 20.0,
