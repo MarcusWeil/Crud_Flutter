@@ -256,17 +256,6 @@ class MyApp extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Center(
-                      child: TextButton(
-                          onPressed: () {
-                            Navigator.of(context, rootNavigator: true)
-                                .pop('dialog');
-                          },
-                          child: const Text(
-                            "Não",
-                            style:
-                                TextStyle(fontSize: 18.0, color: Colors.black),
-                          ))),
-                  Center(
                       child: ElevatedButton(
                           onPressed: () {
                             Navigator.of(context, rootNavigator: true)
@@ -280,6 +269,17 @@ class MyApp extends StatelessWidget {
                               primary: const Color.fromRGBO(173, 42, 42, 1)),
                           child: const Text("Sim",
                               style: TextStyle(fontSize: 18.0)))),
+                  Center(
+                      child: TextButton(
+                          onPressed: () {
+                            Navigator.of(context, rootNavigator: true)
+                                .pop('dialog');
+                          },
+                          child: const Text(
+                            "Não",
+                            style:
+                                TextStyle(fontSize: 18.0, color: Colors.black),
+                          ))),
                 ],
               ),
             ],
