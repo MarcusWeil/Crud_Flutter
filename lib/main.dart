@@ -1,68 +1,89 @@
 import 'package:crud_and_dialoguebox/components/show_snackbar.dart';
+import 'package:crud_and_dialoguebox/models/product.dart';
 import 'package:crud_and_dialoguebox/view/product_create.dart';
 import 'package:crud_and_dialoguebox/view/product_update.dart';
+import 'package:crud_and_dialoguebox/providers/product_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:http/http.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final HttpService httpService = HttpService();
+  MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       scaffoldMessengerKey: ShowSnackBar.instance.rootScaffoldMessengerKey,
       home: Scaffold(
           appBar: _appBar(),
-          body: Column(children: <Widget>[
-            Expanded(
-              child: Builder(builder: (context) {
-                return Observer(builder: (_) {
-                  return ListView.builder(
-                      itemCount: 5,
-                      padding: const EdgeInsets.only(top: 10, bottom: 0),
-                      itemBuilder: (BuildContext context, int index) {
-                        if (index == 0) {
-                          return Column(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 10, bottom: 0),
-                                child: RichText(
-                                  textAlign: TextAlign.center,
-                                  text: const TextSpan(
-                                    style: TextStyle(fontSize: 16),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                          text: 'Existem ',
-                                          style:
-                                              TextStyle(color: Colors.black)),
-                                      TextSpan(
-                                          text: '5',
-                                          style: TextStyle(color: Colors.blue)),
-                                      TextSpan(
-                                          text: ' produtos cadastrados.\n',
-                                          style:
-                                              TextStyle(color: Colors.black)),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              _card()
-                            ],
-                          );
-                        } else {
-                          return _card();
-                        }
-                      });
-                });
-              }),
-            )
-          ])),
-      debugShowCheckedModeBanner: false,
-    );
+          body:
+              //       Column(children: <Widget>[
+              //         Expanded(
+              //           child: Builder(builder: (context) {
+              //             return Observer(builder: (_) {
+              //               return ListView.builder(
+              //                   itemCount: 5,
+              //                   padding: const EdgeInsets.only(top: 10, bottom: 0),
+              //                   itemBuilder: (BuildContext context, int index) {
+              //                     if (index == 0) {
+              //                       return Column(
+              //                         children: [
+              //                           Padding(
+              //                             padding:
+              //                                 const EdgeInsets.only(top: 10, bottom: 0),
+              //                             child: RichText(
+              //                               textAlign: TextAlign.center,
+              //                               text: const TextSpan(
+              //                                 style: TextStyle(fontSize: 16),
+              //                                 children: <TextSpan>[
+              //                                   TextSpan(
+              //                                       text: 'Existem ',
+              //                                       style:
+              //                                           TextStyle(color: Colors.black)),
+              //                                   TextSpan(
+              //                                       text: '5',
+              //                                       style: TextStyle(color: Colors.blue)),
+              //                                   TextSpan(
+              //                                       text: ' produtos cadastrados.\n',
+              //                                       style:
+              //                                           TextStyle(color: Colors.black)),
+              //                                 ],
+              //                               ),
+              //                             ),
+              //                           ),
+              //                           _card()
+              //                         ],
+              //                       );
+              //                     } else {
+              //                       return _card();
+              //                     }
+              //                   });
+              //             });
+              //           }),
+              //         )
+              //       ])),
+              //   debugShowCheckedModeBanner: false,
+              // );
+              FutureBuilder(
+            future: httpService.getProducts(),
+            builder:
+                (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  itemBuilder: (context, index) => ListTile(
+                    title: Text(snapshot.data![index].name),
+                  ),
+                );
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
+        ));
   }
 
   _appBar() {
@@ -120,7 +141,7 @@ class MyApp extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(left: 15.0),
                       child: Text(
-                        'Nome do Produto',
+                        '',
                         textAlign: TextAlign.justify,
                         style: TextStyle(
                             fontSize: 16,
