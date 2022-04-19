@@ -21,69 +21,69 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
           appBar: _appBar(),
           body:
-              //       Column(children: <Widget>[
-              //         Expanded(
-              //           child: Builder(builder: (context) {
-              //             return Observer(builder: (_) {
-              //               return ListView.builder(
-              //                   itemCount: 5,
-              //                   padding: const EdgeInsets.only(top: 10, bottom: 0),
-              //                   itemBuilder: (BuildContext context, int index) {
-              //                     if (index == 0) {
-              //                       return Column(
-              //                         children: [
-              //                           Padding(
-              //                             padding:
-              //                                 const EdgeInsets.only(top: 10, bottom: 0),
-              //                             child: RichText(
-              //                               textAlign: TextAlign.center,
-              //                               text: const TextSpan(
-              //                                 style: TextStyle(fontSize: 16),
-              //                                 children: <TextSpan>[
-              //                                   TextSpan(
-              //                                       text: 'Existem ',
-              //                                       style:
-              //                                           TextStyle(color: Colors.black)),
-              //                                   TextSpan(
-              //                                       text: '5',
-              //                                       style: TextStyle(color: Colors.blue)),
-              //                                   TextSpan(
-              //                                       text: ' produtos cadastrados.\n',
-              //                                       style:
-              //                                           TextStyle(color: Colors.black)),
-              //                                 ],
-              //                               ),
-              //                             ),
-              //                           ),
-              //                           _card()
-              //                         ],
-              //                       );
-              //                     } else {
-              //                       return _card();
-              //                     }
-              //                   });
-              //             });
-              //           }),
-              //         )
-              //       ])),
-              //   debugShowCheckedModeBanner: false,
-              // );
-              FutureBuilder(
-            future: httpService.getProducts(),
-            builder:
-                (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
-              if (snapshot.hasData) {
-                return ListView.builder(
-                  itemBuilder: (context, index) => ListTile(
-                    title: Text(snapshot.data![index].name),
-                  ),
-                );
-              } else {
-                return Center(child: CircularProgressIndicator());
-              }
-            },
-          ),
-        ));
+                    Column(children: <Widget>[
+            Expanded(
+              child: Builder(builder: (context) {
+                return Observer(builder: (_) {
+                  return ListView.builder(
+                      itemCount: 5,
+                      padding: const EdgeInsets.only(top: 10, bottom: 0),
+                      itemBuilder: (BuildContext context, int index) {
+                        if (index == 0) {
+                          return Column(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 10, bottom: 0),
+                                child: RichText(
+                                  textAlign: TextAlign.center,
+                                  text: const TextSpan(
+                                    style: TextStyle(fontSize: 16),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: 'Existem ',
+                                          style:
+                                              TextStyle(color: Colors.black)),
+                                      TextSpan(
+                                          text: '5',
+                                          style: TextStyle(color: Colors.blue)),
+                                      TextSpan(
+                                          text: ' produtos cadastrados.\n',
+                                          style:
+                                              TextStyle(color: Colors.black)),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              _card()
+                            ],
+                          );
+                        } else {
+                          return _card();
+                        }
+                      });
+                });
+              }),
+            )
+          ])),
+      debugShowCheckedModeBanner: false,
+    );
+    //       FutureBuilder(
+    //     future: httpService.getProducts(),
+    //     builder:
+    //         (BuildContext context, AsyncSnapshot<List<Product>> snapshot) {
+    //       if (snapshot.hasData) {
+    //         return ListView.builder(
+    //           itemBuilder: (context, index) => ListTile(
+    //             title: Text(snapshot.data![index].name),
+    //           ),
+    //         );
+    //       } else {
+    //         return Center(child: CircularProgressIndicator());
+    //       }
+    //     },
+    //   ),
+    // ));
   }
 
   _appBar() {
@@ -131,6 +131,8 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Icon(
                     Icons.dashboard,
@@ -141,8 +143,7 @@ class MyApp extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(left: 15.0),
                       child: Text(
-                        '',
-                        textAlign: TextAlign.justify,
+                        '123',
                         style: TextStyle(
                             fontSize: 16,
                             letterSpacing: 0.2,
@@ -157,7 +158,10 @@ class MyApp extends StatelessWidget {
                         onPressed: () {
                           showDialogBox(context);
                         },
-                        icon: const Icon(Icons.delete),
+                        icon: const Icon(
+                          Icons.delete,
+                          color: Color.fromARGB(255, 194, 26, 14),
+                        ),
                       ),
                     );
                   })

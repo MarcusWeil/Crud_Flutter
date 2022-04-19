@@ -9,7 +9,7 @@ class ShowSnackBar {
   void showSnackBarSucess(String msg) {
     rootScaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
       elevation: 4,
-      backgroundColor: Colors.green,
+      backgroundColor: const Color.fromARGB(255, 202, 15, 15),
       content: Text(
         msg,
         style: const TextStyle(fontSize: 15, color: Colors.white),
