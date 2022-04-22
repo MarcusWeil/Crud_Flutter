@@ -15,7 +15,8 @@ Caixa de dialógo é exibida ao clicar no ícone de deletar. [DialogueBox](https
 <img width="300" alt="image" src="https://user-images.githubusercontent.com/93293231/162858085-ab508fa8-dc6a-4564-836a-bfad10507a54.png">
 <br>
 Ao confirmar exclusão, é exibido um [SnackBar](https://github.com/MarcusWeil/crud_and_dialoguebox/blob/main/lib/components/show_snackbar.dart) com a mensagem de sucesso.<br>
-<img width="400" alt="image" src="https://user-images.githubusercontent.com/93293231/162859054-55033aa6-107e-48af-9a68-76d58148b6d3.png">
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/93293231/164591896-ea4b2a76-6802-49e3-8e61-108079179cf4.png">
+
 
 To do:
 - [ ] Banco de dados
