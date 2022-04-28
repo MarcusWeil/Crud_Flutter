@@ -11,7 +11,7 @@ Ao clicar no ícone de adição na NavBar, a seguinte tela é exibida:<br>
 Ao clicar no ícone de editar, a mesma tela é exibida com os dados já preenchidos para edição:<br>
 <img width="300" alt="update" src="https://user-images.githubusercontent.com/93293231/163660700-e7aeabb1-6e66-4072-8301-afc1d282ee0f.png">
 ### Excluir Produto
-Caixa de dialógo é exibida ao clicar no ícone de deletar. [DialogueBox](https://github.com/MarcusWeil/crud_and_dialoguebox/blob/main/lib/main.dart#L217)<br>
+Caixa de dialógo é exibida ao clicar no ícone de deletar. [DialogueBox](https://github.com/MarcusWeil/Crud_Flutter/blob/main/lib/main.dart#L242-L318)<br>
 <img width="300" alt="image" src="https://user-images.githubusercontent.com/93293231/162858085-ab508fa8-dc6a-4564-836a-bfad10507a54.png">
 <br>
 Ao confirmar exclusão, é exibido um [SnackBar](https://github.com/MarcusWeil/crud_and_dialoguebox/blob/main/lib/components/show_snackbar.dart) com a mensagem de sucesso.<br>
@@ -28,6 +28,6 @@ To do:
 
 
 - [ ] Create Items backend
-- [ ] Read Items backend
+- [x] Read Items backend
 - [ ] Update Items backend
 - [ ] Delete Items backend
