@@ -200,7 +200,7 @@ class MyApp extends StatelessWidget {
               Row(
                 children: [
                   const Icon(
-                    Icons.calendar_month_rounded,
+                    Icons.calendar_view_month_rounded,
                     size: 16,
                     color: Colors.black,
                   ),
